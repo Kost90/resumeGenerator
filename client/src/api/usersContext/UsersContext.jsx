@@ -23,26 +23,11 @@ export const UsersProvider = ({ children }) => {
     users: initialUsers,
   })
 
-  const addUser = useCallback(newUser => {
-    postUser(newUser)
+  const addUser = useCallback( async (newUser) => {
+    await postUser(newUser)
     dispatchUsers({ type: userActionsTypes.ADD_USER, payload: { newUser } })
   }, [])
 
-//   const removeUser = useCallback(userId => {
-//     // fetch()
-//     dispatchUsers({ type: userActionsTypes.REMOVE_USER, payload: { userId } })
-//   }, [])
-
-//   const editUser = useCallback(newUser => {
-//     // fetch()
-//     dispatchUsers({ type: userActionsTypes.EDIT_USER, payload: { newUser } })
-//   }, [])
-
-//   const changeUsersWithHardLogic = useCallback((a, b) => {
-//     // fetch()
-//     // ...
-//     dispatchUsers({ type: userActionsTypes.HARD_LOGIC, payload: { a, b } })
-//   }, [])
 
   return (
     <UsersContext.Provider

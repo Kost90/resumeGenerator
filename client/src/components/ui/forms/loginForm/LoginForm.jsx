@@ -6,6 +6,17 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import styles from './LoginForm.module.css';
 
+import { string, number, object, mixed, boolean, date } from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const loginSchema = {
+  email: string()
+  .email()
+  .required()
+  .matches(/@[^.]*\./).label("Your email"),
+  password: string().trim().required().label("password"),
+}
+
 const Form = memo(({ afterSubmit }) => {
   const navigate = useNavigate();
   // const location = useLocation();
@@ -17,14 +28,12 @@ const Form = memo(({ afterSubmit }) => {
     reset,
     formState: { errors },
   } = useForm({
-    defaultValues: {
-      email: "",
-      password: "",
-    },
+    resolver: yupResolver(object().shape(loginSchema)),
   });
 
   const onSubmit = useCallback(async (data) => {
     await afterSubmit(data);
+    localStorage.setItem('email',data.email)
     navigate('/profilepage');
     reset();
   },[]);
@@ -36,11 +45,11 @@ const Form = memo(({ afterSubmit }) => {
     >
       <TextField label="Enter your email" variant="outlined" 
       type="email" {...register("email", { required: true })}/>
-      {errors.name && <div style={{ color: "red" }}>Enter your email</div>}
+      {errors.email?.message && <div style={{ color: "red" }}>{errors.email.message}</div>}
 
       <TextField label="Enter your password" variant="outlined" 
       type="password" {...register("password", { required: true })}/>
-      {errors.name && <div style={{ color: "red" }}>Enter your password</div>}
+      {errors.password?.message && <div style={{ color: "red" }}>{errors.password.message}</div>}
 
       <Button type='submit' variant="contained">
         Log In

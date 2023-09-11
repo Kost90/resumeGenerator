@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, useCallback } from "react";
 
-import { postLoginUser, getUserInfo, deleteLoginUser } from "./LoginApi";
+import { postLoginUser, getUserInfo, deleteLoginUser, getLoginUser } from "./LoginApi";
 import { loginReducer } from "./LoginReducer";
 import { loginActionsTypes } from "./LoginActionTypes";
 
@@ -23,9 +23,16 @@ export const LoginProvider = ({ children }) => {
     loginusers: initialLoginUsers,
   });
 
+  const fetchLoginUser = useCallback(async (email) =>{
+    const data = await getLoginUser(email);
+    dispatchLogin({
+      type: loginActionsTypes.ADD_LOGIN_USER,
+      payload: { data },
+    });
+  },[])
+
   const addLoginUser = useCallback( async (loginUser) => {
     const data = await getUserInfo(loginUser);
-    console.log(data);
     await postLoginUser(data);
     dispatchLogin({
       type: loginActionsTypes.ADD_LOGIN_USER,
@@ -35,6 +42,7 @@ export const LoginProvider = ({ children }) => {
 
   const removeLoginUser = useCallback((userId) => {
     deleteLoginUser(userId);
+    localStorage.clear();
     dispatchLogin({
       type: loginActionsTypes.REMOVE_LOGIN_USER,
       payload: { userId },
@@ -47,6 +55,7 @@ export const LoginProvider = ({ children }) => {
         loginusers,
         addLoginUser,
         removeLoginUser,
+        fetchLoginUser,
       }}
     >
       {children}

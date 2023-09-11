@@ -6,11 +6,11 @@ export const loginReducer = (prevState, action) => {
   switch (type) {
     case loginActionsTypes.ADD_LOGIN_USER:
       return {
-        loginusers: payload.loginUser,
+        loginusers: payload.data,
       }
     case loginActionsTypes.REMOVE_LOGIN_USER:
       return {
-        loginusers: prevState.loginusers.filter(({ id }) => id !== payload.userId),
+        loginusers: null,
       }
     default:
       break

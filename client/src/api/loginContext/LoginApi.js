@@ -1,6 +1,8 @@
+const url = 'http://localhost:8000/loginuser';
+
 export const postLoginUser = async (loginUser) => {
   try {
-    const response = await fetch("http://localhost:8000/loginuser", {
+    const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -16,6 +18,12 @@ export const postLoginUser = async (loginUser) => {
   } catch (error) {
     return console.error(error);
   }
+};
+
+export const getLoginUser = async (email) => {
+  const response = await fetch(`${url}/${email}`)
+
+  return await response.json()
 };
 
 export const getUserInfo = async (loginInfo) => {
@@ -37,7 +45,7 @@ export const getUserInfo = async (loginInfo) => {
 
 export const deleteLoginUser = async (UserId) => {
   try {
-    const response = await fetch(`http://localhost:8000/loginuser/${UserId}`, {
+    const response = await fetch(`${url}/${UserId}`, {
       method: "DELETE",
     });
     if (!response.ok) {

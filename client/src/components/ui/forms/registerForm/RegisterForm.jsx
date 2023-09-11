@@ -1,11 +1,27 @@
-import {memo, useCallback} from 'react';
+import { memo, useCallback } from "react";
 import { useForm } from "react-hook-form";
-import useUsersContext from '../../../../api/usersContext/UsersContext';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import styles from './RegisterForm.module.css';
+import { useNavigate } from "react-router-dom";
+import useUsersContext from "../../../../api/usersContext/UsersContext";
+import useLoginContext from "../../../../api/loginContext/LoginContext";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import styles from "./RegisterForm.module.css";
 
-const Form = memo(({ afterSubmit }) => {
+import { string, number, object, mixed, boolean, date } from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const registerSchema = {
+  Firstname: string().trim().required().min(3).max(20).label("Your Firstname"),
+  Lastname: string().trim().required().min(3).max(20).label("Your Lastname"),
+  email: string()
+    .email()
+    .required()
+    .matches(/@[^.]*\./),
+  password: string().trim().required().label("password"),
+};
+
+const Form = memo(({ afterSubmit, addLogin }) => {
+  const navigate = useNavigate();
 
   const {
     register,
@@ -13,54 +29,75 @@ const Form = memo(({ afterSubmit }) => {
     reset,
     formState: { errors },
   } = useForm({
-    defaultValues: {
-      Firstname: "",
-      Lastname: "",
-      email: "",
-      password: "",
-    },
+    resolver: yupResolver(object().shape(registerSchema)),
   });
 
-  const onSubmit = useCallback((data) => {
+  const onSubmit = useCallback(async (data) => {
     console.log(data);
-    afterSubmit(data);
+    await afterSubmit(data);
+    const logindata = {
+      email: data.email,
+      password: data.password,
+    };
+    localStorage.setItem("email", data.email);
+    await addLogin(logindata);
+    navigate("/profilepage");
     reset();
-  },[]);
+  }, []);
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className={styles.form_container}
-    >
-      <TextField label="Enter your Firstname" variant="outlined"
-      type="text" {...register("Firstname", { required: true })}/>
-      {errors.name && <div style={{ color: "red" }}>Enter your Firstname</div>}
-      <TextField label="Enter your Lastname" variant="outlined" 
-      type="text" {...register("Lastname", { required: true })}/>
-      {errors.name && <div style={{ color: "red" }}>Enter your Lastname</div>}
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.form_container}>
+      <TextField
+        label="Enter your Firstname"
+        variant="outlined"
+        type="text"
+        {...register("Firstname", { required: true })}
+      />
+      {errors.Firstname?.message && (
+        <div style={{ color: "red" }}>{errors.Firstname.message}</div>
+      )}
+      <TextField
+        label="Enter your Lastname"
+        variant="outlined"
+        type="text"
+        {...register("Lastname", { required: true })}
+      />
+      {errors.Lastname?.message && (
+        <div style={{ color: "red" }}>{errors.Lastname.message}</div>
+      )}
 
-      <TextField label="Enter your email" variant="outlined" 
-      type="email" {...register("email", { required: true })}/>
-      {errors.name && <div style={{ color: "red" }}>Enter your email</div>}
+      <TextField
+        label="Enter your email"
+        variant="outlined"
+        type="email"
+        {...register("email", { required: true })}
+      />
+      {errors.email?.message && (
+        <div style={{ color: "red" }}>{errors.email.message}</div>
+      )}
 
-      <TextField label="Enter your password" variant="outlined" 
-      type="password" {...register("password", { required: true })}/>
-      {errors.name && <div style={{ color: "red" }}>Enter your password</div>}
+      <TextField
+        label="Enter your password"
+        variant="outlined"
+        type="password"
+        {...register("password", { required: true })}
+      />
+      {errors.password?.message && (
+        <div style={{ color: "red" }}>{errors.password.message}</div>
+      )}
 
-      <Button type='submit' variant="contained">
+      <Button type="submit" variant="contained">
         Register
       </Button>
     </form>
   );
-})
-
-
+});
 
 function RegisterForm() {
-
   const { addUser } = useUsersContext();
+  const { addLoginUser } = useLoginContext();
 
-  return <Form afterSubmit={addUser} />
+  return <Form afterSubmit={addUser} addLogin={addLoginUser} />;
 }
 
-export default RegisterForm
+export default RegisterForm;

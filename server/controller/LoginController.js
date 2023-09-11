@@ -12,7 +12,6 @@ const verifyToken = (accesToken) => {
 
   const getLoginUser = async (req, res) => {
     const useremail = req.params.email;
-    console.log(useremail);
     try {
       let x = verifyToken(token);
       console.log(x);
