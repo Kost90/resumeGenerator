@@ -1,1 +1,1 @@
-{"version":3,"sources":["RegisterForm.module.scss","RegisterForm.module.css"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,sBAAA;EACA,mBAAA;EACA,uBAAA;EACA,SAAA;EACA,iBAAA;EACA,aAAA;ACCJ","file":"RegisterForm.module.css"}
+{"version":3,"sources":["RegisterForm.module.scss","RegisterForm.module.css"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,sBAAA;EACA,mBAAA;EACA,uBAAA;EACA,SAAA;EACA,cAAA;EACA,aAAA;ACCJ;ADAI;EACI,gBAAA;ACER","file":"RegisterForm.module.css"}

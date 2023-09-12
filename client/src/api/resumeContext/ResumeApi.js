@@ -1,6 +1,8 @@
+const dotenv = require("dotenv").config();
+const key = process.env.OPEN_AI_KEY;
 const url = "http://localhost:8000/resume";
 const openaiurl = "https://api.openai.com/v1/chat/completions";
-const key = "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";
+// const key = "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";
 
 export const postResumeAI = async (resume) => {
   try {
@@ -15,11 +17,12 @@ export const postResumeAI = async (resume) => {
         messages: [
           {
             role: "system",
-            content: "You are a helpful assistant that generates resumes.",
+            content: "You are a helpful assistant.",
           },
           {
             role: "user",
-            content: `Hello, can you generate a resume for me with the following information? 
+            content: `
+            Can you help to generate a resume for me please
             My name is ${resume.Firstname} ${resume.Lastname}.
             email: ${resume.email}
             phone: ${resume.phone}

@@ -1,8 +1,13 @@
 .container {
-  background-color: blue;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 50px;
+  padding: 25px;
   gap: 20px;
+}
+.container a {
+  font-size: 24px;
+  line-height: 28px;
+  text-transform: uppercase;
+  color: #181896;
 }/*# sourceMappingURL=header.module.css.map */

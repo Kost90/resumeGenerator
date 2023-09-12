@@ -1,12 +1,19 @@
-import { useEffect, useCallback } from "react";
+import { useEffect } from "react";
 import useLoginContext from "../api/loginContext/LoginContext";
 import useUsersContext from "../api/usersContext/UsersContext";
-import UserInfoItem from "../components/ui/userItem/UserInfoItem";
-import ResumeForm from "../components/ui/forms/resumeForm/ResumeForm";
+import useResumeContext from "../api/resumeContext/ResumeContext";
+import Sidebar from '../components/ui/sidebar/Sidebar';
+import MainSection from "../components/ui/mainsection/MainSection";
+// import UserInfoItem from "../components/ui/userItem/UserInfoItem";
+// import ResumeForm from "../components/ui/forms/resumeForm/ResumeForm";
+import styles from './ProfilePage.module.css';
 
 function Profilepage() {
   const { fetchUser } = useUsersContext();
   const { loginusers, removeLoginUser } = useLoginContext();
+  const { resume } = useResumeContext();
+
+  console.log(resume)
 
   const LogOut = (id) => {
     removeLoginUser(id);
@@ -24,14 +31,14 @@ function Profilepage() {
   },[]);
 
   return (
-    <>
+    <div className={styles.profile_page}>
       {loginusers !== undefined ? (
         <>
-          <UserInfoItem logout={LogOut} />
-          <ResumeForm />
+        <Sidebar logout={LogOut}/>
+        <MainSection/>
         </>
       ) : null}
-    </>
+    </div>
   );
 }
 

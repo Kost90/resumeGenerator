@@ -1,9 +1,16 @@
 .form_container{
-    display:flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 40px;
-    margin: 50px auto;
+    gap: 20px;
     padding: 20px;
+    height: 100%;
+    margin: 0 auto;
+    input{
+        min-width: 300px;
+    }
+    textarea{
+        min-width: 300px;
+    }
 }

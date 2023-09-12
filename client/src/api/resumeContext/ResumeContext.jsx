@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useCallback } from "react";
+import { createContext, useContext, useReducer, useCallback, useState } from "react";
 
 import {postResume, getLoginUserResume, delLogUserResume} from './ResumeApi';
 
@@ -20,6 +20,17 @@ const useResumeContext = () => {
 };
 
 export const ResumeProvider = ({ children }) => {
+  const [content, setContent] = useState('');
+  const [showCompletion, setShowcompletion] = useState(false);
+
+  const Handelchange = () =>{
+      setShowcompletion((state) => !state);
+  };
+
+  const HandelchangeContent = (content) =>{
+    setContent((state) => state = content);
+};
+
     const [{ resume }, dispatchResume] = useReducer(resumeReducer, {
         resume: initialResume,
     });
@@ -27,12 +38,13 @@ export const ResumeProvider = ({ children }) => {
     const fetchUserResume = useCallback(async (IdUser) =>{
       const data = await getLoginUserResume(IdUser);
       dispatchResume({
-        type: resumeActionsTypes.ADD_RESUME,
+        type: resumeActionsTypes.FETCH_RESUME,
         payload: { data },
       });
     },[])
   
     const addResume = useCallback( async (resume) => {
+      console.log(resume)
       await postResume(resume);
       dispatchResume({
         type: resumeActionsTypes.ADD_RESUME,
@@ -55,6 +67,10 @@ export const ResumeProvider = ({ children }) => {
           addResume,
           removeUserResume,
           fetchUserResume,
+          showCompletion,
+          Handelchange,
+          HandelchangeContent,
+          content,
         }}
       >
         {children}

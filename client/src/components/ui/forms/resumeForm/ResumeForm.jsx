@@ -29,7 +29,7 @@ const resumeSchema = {
   UsersID: number().label("Users ID"),
 };
 
-const Form = memo(({ aftersubmit, id }) => {
+const Form = memo(({ aftersubmit, id, show, setContent }) => {
   const {
     register,
     handleSubmit,
@@ -38,6 +38,14 @@ const Form = memo(({ aftersubmit, id }) => {
   } = useForm({
     resolver: yupResolver(object().shape(resumeSchema)),
   });
+
+  const handelchange = () =>{
+    show();
+  }
+
+  const addContent = (content) =>{
+    setContent(content);
+  }
 
   const onSubmit = useCallback(
     async (data, e) => {
@@ -50,6 +58,8 @@ const Form = memo(({ aftersubmit, id }) => {
         UsersID: id,
       };
       await aftersubmit(newData);
+      addContent(newData.content);
+      handelchange();
       reset();
     },
     [id]
@@ -139,13 +149,21 @@ const Form = memo(({ aftersubmit, id }) => {
   );
 });
 
-function ResumeForm() {
-  const { addResume } = useResumeContext();
+function ResumeForm({show}) {
+  const { addResume, Handelchange, HandelchangeContent } = useResumeContext();
   const { users } = useUsersContext();
+
+  const handelchange = () =>{
+    Handelchange();
+  }
+
+  const setContent = (content) =>{
+    HandelchangeContent(content);
+  }
 
   const id = users[0]?.id;
 
-  return <Form aftersubmit={addResume} id={id} />;
+  return <Form aftersubmit={addResume} id={id} show={handelchange} setContent={setContent}/>;
 }
 
 export default ResumeForm;
