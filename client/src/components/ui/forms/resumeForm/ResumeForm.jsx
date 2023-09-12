@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import Textarea from "@mui/joy/Textarea";
 import Button from "@mui/material/Button";
 import styles from "./ResumeForm.module.css";
+import { postResumeAI } from "../../../../api/resumeContext/ResumeApi";
 
 import { string, number, object } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -40,8 +41,12 @@ const Form = memo(({ aftersubmit, id }) => {
 
   const onSubmit = useCallback(
     async (data, e) => {
+     const res = await postResumeAI(data);
+     const response = {
+      content: res.choices[0].message.content.trim(),
+    };
       const newData = {
-        ...data,
+        ...response,
         UsersID: id,
       };
       await aftersubmit(newData);

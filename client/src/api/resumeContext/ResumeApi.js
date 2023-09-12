@@ -1,4 +1,47 @@
-const url = 'http://localhost:8000/resume';
+const url = "http://localhost:8000/resume";
+const openaiurl = "https://api.openai.com/v1/chat/completions";
+const key = "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";
+
+export const postResumeAI = async (resume) => {
+  try {
+    const response = await fetch(openaiurl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${key}`,
+      },
+      body: JSON.stringify({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "system",
+            content: "You are a helpful assistant that generates resumes.",
+          },
+          {
+            role: "user",
+            content: `Hello, can you generate a resume for me with the following information? 
+            My name is ${resume.Firstname} ${resume.Lastname}.
+            email: ${resume.email}
+            phone: ${resume.phone}
+            Work experience: ${resume.workexpr}
+            education: ${resume.education} 
+            My skills: ${resume.skills} `,
+          },
+        ],
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to POST data to OpenAI API");
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
 
 export const postResume = async (resume) => {
   try {
@@ -21,11 +64,10 @@ export const postResume = async (resume) => {
 };
 
 export const getLoginUserResume = async (IdUser) => {
-  const response = await fetch(`${url}/${IdUser}`)
+  const response = await fetch(`${url}/${IdUser}`);
 
-  return await response.json()
+  return await response.json();
 };
-
 
 export const delLogUserResume = async (UserId) => {
   try {
