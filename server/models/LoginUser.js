@@ -25,6 +25,7 @@ const LoginUser = sequelize.define('LoginUser',{
     unique: true,
     allowNull: false,
   },
+  
 },
 {
   timestamps: false,

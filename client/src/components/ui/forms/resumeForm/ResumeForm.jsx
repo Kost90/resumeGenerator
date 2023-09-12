@@ -1,33 +1,34 @@
 import { memo, useCallback } from "react";
 import { useForm } from "react-hook-form";
-// import useUsersContext from "../../../../api/usersContext/UsersContext";
-// import useLoginContext from "../../../../api/loginContext/LoginContext";
+import useUsersContext from "../../../../api/usersContext/UsersContext";
+import useResumeContext from "../../../../api/resumeContext/ResumeContext";
 import TextField from "@mui/material/TextField";
 import Textarea from "@mui/joy/Textarea";
 import Button from "@mui/material/Button";
 import styles from "./ResumeForm.module.css";
 
-import { string, number, object, mixed, boolean, date } from "yup";
+import { string, number, object } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const phoneNumberRegex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
-
 const resumeSchema = {
   Firstname: string().trim().required().min(3).max(20).label("Your Firstname"),
   Lastname: string().trim().required().min(3).max(20).label("Your Lastname"),
   email: string()
     .email()
     .required()
-    .matches(/@[^.]*\./).label("Your email"),
+    .matches(/@[^.]*\./)
+    .label("Your email"),
   phone: string()
     .matches(phoneNumberRegex, "Is not a number")
     .label("Phone Number"),
   workexpr: string().trim().required().min(3).label("Your work experience"),
   education: string().trim().required().min(3).label("Your work education"),
   skills: string().trim().required().min(3).label("Your work skills"),
+  UsersID: number().label("Users ID"),
 };
 
-const Form = memo(() => {
+const Form = memo(({ aftersubmit, id }) => {
   const {
     register,
     handleSubmit,
@@ -37,10 +38,17 @@ const Form = memo(() => {
     resolver: yupResolver(object().shape(resumeSchema)),
   });
 
-  const onSubmit = useCallback(async (data) => {
-    console.log(data);
-    reset();
-  }, []);
+  const onSubmit = useCallback(
+    async (data, e) => {
+      const newData = {
+        ...data,
+        UsersID: id,
+      };
+      await aftersubmit(newData);
+      reset();
+    },
+    [id]
+  );
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form_container}>
@@ -127,10 +135,12 @@ const Form = memo(() => {
 });
 
 function ResumeForm() {
-  // const { addUser } = useUsersContext();
-  // const { addLoginUser } = useLoginContext();
+  const { addResume } = useResumeContext();
+  const { users } = useUsersContext();
 
-  return <Form />;
+  const id = users[0]?.id;
+
+  return <Form aftersubmit={addResume} id={id} />;
 }
 
 export default ResumeForm;

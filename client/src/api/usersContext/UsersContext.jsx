@@ -2,7 +2,7 @@ import { createContext, useContext, useReducer, useCallback } from 'react'
 
 import { usersReducer } from './UsersReducer';
 import { userActionsTypes } from './UsersActionTypes';
-import { postUser } from './UsersApi';
+import { postUser, getUser } from './UsersApi';
 
 const UsersContext = createContext()
 
@@ -26,7 +26,15 @@ export const UsersProvider = ({ children }) => {
   const addUser = useCallback( async (newUser) => {
     await postUser(newUser)
     dispatchUsers({ type: userActionsTypes.ADD_USER, payload: { newUser } })
-  }, [])
+  }, []);
+
+  const fetchUser = useCallback(async (email) =>{
+    const data = await getUser(email);
+    dispatchUsers({
+      type: userActionsTypes.ADD_USER,
+      payload: { data },
+    });
+  },[])
 
 
   return (
@@ -34,6 +42,7 @@ export const UsersProvider = ({ children }) => {
       value={{
         users,
         addUser,
+        fetchUser,
       }}>
       {children}
     </UsersContext.Provider>

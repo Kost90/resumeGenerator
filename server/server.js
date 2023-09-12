@@ -4,7 +4,8 @@ const dotenv = require('dotenv');
 const {testConnection} = require('./models/Conn');
 // const {createTables} = require('./models/setUp');
 const userRoutes = require('./routes/UserRoutes');
-const loginRoutes = require('./routes/LoginRoutes')
+const loginRoutes = require('./routes/LoginRoutes');
+const resumeroutes = require('./routes/ResumeRoutes');
 
 const app = express();
 const port = 8000;
@@ -19,6 +20,7 @@ app.use(express.json());
 
 app.use("/users", userRoutes);
 app.use("/loginuser", loginRoutes);
+app.use("/resume",resumeroutes);
 
 
 app.use((err, req, res, next)=>{

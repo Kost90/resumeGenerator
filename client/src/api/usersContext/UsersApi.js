@@ -1,6 +1,8 @@
+const url = 'http://localhost:8000/users';
+
 export const postUser = async (newUser) => {
     try {
-        const response = await fetch('http://localhost:8000/users',{
+        const response = await fetch(url,{
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -16,3 +18,9 @@ export const postUser = async (newUser) => {
         return console.error(error)
     }
 }
+
+export const getUser = async (email) => {
+  const response = await fetch(`${url}/${email}`)
+
+  return await response.json()
+};

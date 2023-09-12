@@ -6,7 +6,7 @@ export const usersReducer = (prevState, action) => {
   switch (type) {
     case userActionsTypes.ADD_USER:
       return {
-        users: [...prevState.users, payload.newUser],
+        users: [...prevState.users, payload.data],
       }
     case userActionsTypes.REMOVE_USER:
       return {

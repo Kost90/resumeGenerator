@@ -2,6 +2,18 @@ const Users = require('../models/Users');
 const bcrypt = require('bcrypt');
 
 
+const getUser = async (req, res) => {
+    const useremail = req.params.email;
+    try {
+      const result = await Users.findOne({ where: { email: useremail } });
+      if (result != null) {
+        return res.json(result);
+      }
+    } catch (err) {
+      return res.send("User not found");
+    }
+  };
+
 const getSingleUser = async (req, res) => {
     const useremail = req.params.email;
     const password = req.params.password;
@@ -30,5 +42,6 @@ const addNewUser = async (req, res) => {
 
 module.exports = {
     getSingleUser,
-    addNewUser
+    addNewUser,
+    getUser,
 }

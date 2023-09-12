@@ -2,6 +2,8 @@ import {memo, useCallback} from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useLoginContext from '../../../../api/loginContext/LoginContext';
+import useUsersContext from "../../../../api/usersContext/UsersContext";
+import {getUserInfo} from '../../../../api/loginContext/LoginApi';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import styles from './LoginForm.module.css';
@@ -17,7 +19,7 @@ const loginSchema = {
   password: string().trim().required().label("password"),
 }
 
-const Form = memo(({ afterSubmit }) => {
+const Form = memo(({ afterSubmit}) => {
   const navigate = useNavigate();
   // const location = useLocation();
   // const fromPage = location.state?.from?.pathname;
@@ -33,7 +35,7 @@ const Form = memo(({ afterSubmit }) => {
 
   const onSubmit = useCallback(async (data) => {
     await afterSubmit(data);
-    localStorage.setItem('email',data.email)
+    localStorage.setItem('email',data.email);
     navigate('/profilepage');
     reset();
   },[]);
@@ -60,8 +62,9 @@ const Form = memo(({ afterSubmit }) => {
 
 function LoginForm() {
  const {addLoginUser} = useLoginContext();
+ const { addUser } = useUsersContext();
 
- return <Form afterSubmit={addLoginUser} />
+ return <Form afterSubmit={addLoginUser}/>
 }
 
 export default LoginForm
