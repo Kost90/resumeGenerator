@@ -1,4 +1,4 @@
-const url = process.env.REACT_APP_backendurl;
+const url = process.env.REACT_APP_BACKENDURL;
 
 export const postLoginUser = async (loginUser) => {
   try {

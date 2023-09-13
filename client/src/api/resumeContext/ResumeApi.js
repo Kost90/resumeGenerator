@@ -1,6 +1,6 @@
 
 const key = process.env.REACT_APP_OPEN_AI_KEY;
-const url = process.env.REACT_APP_backendurl;
+const url = process.env.REACT_APP_BACKENDURL;
 const openaiurl = "https://api.openai.com/v1/chat/completions";
 
 

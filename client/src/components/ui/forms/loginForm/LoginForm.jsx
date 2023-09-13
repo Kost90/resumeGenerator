@@ -1,14 +1,13 @@
 import {memo, useCallback} from 'react';
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useLoginContext from '../../../../api/loginContext/LoginContext';
 import useUsersContext from "../../../../api/usersContext/UsersContext";
-import {getUserInfo} from '../../../../api/loginContext/LoginApi';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import styles from './LoginForm.module.css';
 
-import { string, number, object, mixed, boolean, date } from "yup";
+import { string, object,} from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const loginSchema = {
@@ -21,9 +20,7 @@ const loginSchema = {
 
 const Form = memo(({ afterSubmit}) => {
   const navigate = useNavigate();
-  // const location = useLocation();
-  // const fromPage = location.state?.from?.pathname;
-
+ 
   const {
     register,
     handleSubmit,

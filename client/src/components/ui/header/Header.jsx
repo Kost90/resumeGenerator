@@ -4,7 +4,7 @@ import logo from '../../images/icons8-r-67.png'
 import styles from './header.module.css';
 
 function Header() {
-  const {loginusers, fetchLoginUser} = useLoginContext();
+  const {loginusers} = useLoginContext();
 
   return (
     
