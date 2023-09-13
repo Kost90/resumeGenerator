@@ -23,16 +23,16 @@ function App() {
               <Header />
               <Routes>
                 <Route path="/" element={<Homepage />} />
-                <Route path="/loginpage" element={<Loginpage />} />
+                <Route path="loginpage" element={<Loginpage />} />
                 <Route
-                  path="/profilepage"
+                  path="profilepage"
                   element={
                     <LoginAuth>
                       <Profilepage />
                     </LoginAuth>
                   }
                 />
-                <Route path="/registerpage" element={<Registerpage />} />
+                <Route path="registerpage" element={<Registerpage />} />
               </Routes>
             </UsersProvider>
           </LoginProvider>
