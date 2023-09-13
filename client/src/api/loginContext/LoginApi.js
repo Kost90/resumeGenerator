@@ -21,7 +21,7 @@ export const postLoginUser = async (loginUser) => {
 };
 
 export const getLoginUser = async (email) => {
-  const response = await fetch(`${url}/${email}`)
+  const response = await fetch(`${url}/loginuser/${email}`)
 
   return await response.json()
 };
