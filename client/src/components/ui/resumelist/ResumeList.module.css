@@ -1,0 +1,12 @@
+.li {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 10px;
+}
+.li li {
+  color: #181896;
+}
+.li li:hover {
+  color: white;
+}/*# sourceMappingURL=ResumeList.module.css.map */

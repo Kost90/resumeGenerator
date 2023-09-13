@@ -1,0 +1,12 @@
+.li{
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 10px;
+    li{
+        color: #181896;
+        &:hover{
+            color: white;
+        }
+    }
+}

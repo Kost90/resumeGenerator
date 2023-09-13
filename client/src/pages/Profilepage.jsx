@@ -2,40 +2,38 @@ import { useEffect } from "react";
 import useLoginContext from "../api/loginContext/LoginContext";
 import useUsersContext from "../api/usersContext/UsersContext";
 import useResumeContext from "../api/resumeContext/ResumeContext";
-import Sidebar from '../components/ui/sidebar/Sidebar';
+import Sidebar from "../components/ui/sidebar/Sidebar";
 import MainSection from "../components/ui/mainsection/MainSection";
-// import UserInfoItem from "../components/ui/userItem/UserInfoItem";
-// import ResumeForm from "../components/ui/forms/resumeForm/ResumeForm";
-import styles from './ProfilePage.module.css';
+import styles from "./ProfilePage.module.css";
 
 function Profilepage() {
   const { fetchUser } = useUsersContext();
   const { loginusers, removeLoginUser } = useLoginContext();
   const { resume } = useResumeContext();
 
-  console.log(resume)
+  console.log(resume);
 
   const LogOut = (id) => {
     removeLoginUser(id);
   };
 
-  useEffect(() =>{
-    if(loginusers !== null){
+  useEffect(() => {
+    if (loginusers !== null) {
       const Fetchdata = async () => {
-        console.log('fetch user')
-        const email = localStorage.getItem('email');
+        console.log("fetch user");
+        const email = localStorage.getItem("email");
         await fetchUser(email);
-      }
+      };
       Fetchdata();
     }
-  },[]);
+  }, []);
 
   return (
     <div className={styles.profile_page}>
       {loginusers !== undefined ? (
         <>
-        <Sidebar logout={LogOut}/>
-        <MainSection/>
+          <Sidebar logout={LogOut} />
+          <MainSection />
         </>
       ) : null}
     </div>

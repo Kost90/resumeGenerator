@@ -1,10 +1,11 @@
-const dotenv = require("dotenv").config();
-const key = process.env.OPEN_AI_KEY;
+
+const key = process.env.REACT_APP_OPEN_AI_KEY;
 const url = "http://localhost:8000/resume";
 const openaiurl = "https://api.openai.com/v1/chat/completions";
-// const key = "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";
+
 
 export const postResumeAI = async (resume) => {
+  console.log(key);
   try {
     const response = await fetch(openaiurl, {
       method: "POST",

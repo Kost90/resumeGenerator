@@ -1,9 +1,30 @@
-.text_container {
-  line-height: 50px;
-  text-transform: math-auto;
-  margin: 0 100px;
-  justify-content: right;
-  padding: 50px;
+.displayresume_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: aliceblue;
   border-radius: 10px;
+  padding: 20px 10px;
+}
+
+.text_container {
+  line-height: 26px;
+  text-transform: math-auto;
+  justify-content: right;
+  padding: 10px;
+}
+
+@media (min-width: 768px) {
+  .displayresume_container {
+    margin: 0 50px;
+    padding: 20px 0;
+  }
+  .text_container {
+    line-height: 50px;
+    margin: 0 100px;
+    justify-content: right;
+    padding: 50px;
+    max-width: 640px;
+  }
 }/*# sourceMappingURL=ResumeDisplay.module.css.map */

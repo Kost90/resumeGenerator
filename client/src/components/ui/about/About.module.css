@@ -12,25 +12,41 @@
   gap: 25px;
   margin: 0 auto;
   text-align: center;
-  padding: 50px 0;
+  padding: 50px 10px;
   max-width: 740px;
 }
 .container h1 {
-  font-size: 46px;
-  line-height: 48px;
-  max-width: 740px;
+  font-size: 30px;
+  line-height: 43px;
   text-align: center;
-  letter-spacing: 1.8px;
-  margin-bottom: 8px;
+  letter-spacing: 0.8px;
   text-align: center;
   text-transform: uppercase;
   color: #1e2532;
 }
 .container p {
-  font-size: 22px;
-  line-height: 28px;
-  margin-bottom: 24px;
-  max-width: 600px;
+  font-size: 16px;
+  line-height: 26px;
+  margin-bottom: 25px;
   text-align: center;
   color: #1e2532;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 740px;
+  }
+  .container h1 {
+    font-size: 46px;
+    line-height: 48px;
+    max-width: 740px;
+    letter-spacing: 1.8px;
+    margin-bottom: 8px;
+  }
+  .container p {
+    font-size: 22px;
+    line-height: 28px;
+    margin-bottom: 24px;
+    max-width: 600px;
+  }
 }/*# sourceMappingURL=About.module.css.map */

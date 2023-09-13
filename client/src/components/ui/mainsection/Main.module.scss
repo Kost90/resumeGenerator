@@ -1,4 +1,16 @@
 .main_section{
     display: flex;
-    margin: 0 auto;
+    margin: 20px auto;
+    text-align: center;
+    h1{
+        text-transform: uppercase;
+    }
+}
+
+@media(min-width:768px){
+    .main_section{
+        display: flex;
+        margin: 0 auto;
+        text-align: center;
+    }
 }

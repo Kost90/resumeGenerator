@@ -7,6 +7,7 @@ import Textarea from "@mui/joy/Textarea";
 import Button from "@mui/material/Button";
 import styles from "./ResumeForm.module.css";
 import { postResumeAI } from "../../../../api/resumeContext/ResumeApi";
+import Loader from "../../loader/Loader";
 
 import { string, number, object } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -29,7 +30,7 @@ const resumeSchema = {
   UsersID: number().label("Users ID"),
 };
 
-const Form = memo(({ aftersubmit, id, show, setContent }) => {
+const Form = memo(({ aftersubmit, id, show, setContent, setloading }) => {
   const {
     register,
     handleSubmit,
@@ -39,26 +40,32 @@ const Form = memo(({ aftersubmit, id, show, setContent }) => {
     resolver: yupResolver(object().shape(resumeSchema)),
   });
 
-  const handelchange = () =>{
+  const handelchange = () => {
     show();
-  }
+  };
 
-  const addContent = (content) =>{
+  const addContent = (content) => {
     setContent(content);
-  }
+  };
+
+  const toggleLoading = () => {
+    setloading();
+  };
 
   const onSubmit = useCallback(
     async (data, e) => {
-     const res = await postResumeAI(data);
-     const response = {
-      content: res.choices[0].message.content.trim(),
-    };
+      toggleLoading();
+      const res = await postResumeAI(data);
+      const response = {
+        content: res.choices[0].message.content.trim(),
+      };
       const newData = {
         ...response,
         UsersID: id,
       };
       await aftersubmit(newData);
       addContent(newData.content);
+      toggleLoading();
       handelchange();
       reset();
     },
@@ -149,21 +156,48 @@ const Form = memo(({ aftersubmit, id, show, setContent }) => {
   );
 });
 
-function ResumeForm({show}) {
-  const { addResume, Handelchange, HandelchangeContent } = useResumeContext();
+function ResumeForm({ show }) {
+  const {
+    addResume,
+    Handelchange,
+    HandelchangeContent,
+    ChangeLoading,
+    loading,
+  } = useResumeContext();
   const { users } = useUsersContext();
 
-  const handelchange = () =>{
+  const handelchange = () => {
     Handelchange();
-  }
+  };
 
-  const setContent = (content) =>{
+  const handelchangeLoading = () => {
+    ChangeLoading();
+  };
+
+  const setContent = (content) => {
     HandelchangeContent(content);
-  }
+  };
 
   const id = users[0]?.id;
 
-  return <Form aftersubmit={addResume} id={id} show={handelchange} setContent={setContent}/>;
+  return (
+    <>
+      {loading === false ? (
+        <div>
+         <h1>Fill form for creating resume</h1>
+        <Form
+          aftersubmit={addResume}
+          setloading={handelchangeLoading}
+          id={id}
+          show={handelchange}
+          setContent={setContent}
+        />
+        </div>
+      ) : (
+        <Loader/>
+      )}
+    </>
+  );
 }
 
 export default ResumeForm;

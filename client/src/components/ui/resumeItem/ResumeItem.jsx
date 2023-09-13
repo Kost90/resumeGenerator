@@ -3,16 +3,17 @@ import useResumeContext from '../../../api/resumeContext/ResumeContext';
 import Button from '@mui/material/Button';
 
 function ResumeItem ({content, id}) {
-  const {showCompletion, Handelchange, HandelchangeContent} = useResumeContext();
+  const { Handelchange, HandelchangeContent, ChangeResumeId} = useResumeContext();
 
-  const setContent = (content) =>{
+  const setContent = (content, id) =>{
     HandelchangeContent(content);
+    ChangeResumeId(id)
     Handelchange();
   }
 
   return (
     <>
-    <li onClick={() => setContent(content)}>Resume number: {id}</li>
+    <li onClick={() => setContent(content, id)}>Resume number: {id}</li>
     </>
   )
 }

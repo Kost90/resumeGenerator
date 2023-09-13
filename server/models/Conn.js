@@ -1,9 +1,13 @@
 const { Sequelize } = require("sequelize");
+const {db, user, pw, host} = require('../config');
 
 // DB Connection Configuration
-const sequelize = new Sequelize("resumegenerator", "postgres", "postgres", {
-    host: "localhost",
+const sequelize = new Sequelize(db, user, pw, {
+    host: host,
     dialect: "postgres",
+    dialectOptions:{
+        ssl:true
+    },
     logging: false
 });
 

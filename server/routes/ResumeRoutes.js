@@ -4,6 +4,6 @@ const resumeController = require('../controller/ResumeController');
 
 router.get("/:IdUser", resumeController.getResume);
 router.post("/", resumeController.addResume);
-router.delete("/:UserId", resumeController.deleteUserResume);
+router.delete("/:resumeId", resumeController.deleteUserResume);
 
 module.exports = router;

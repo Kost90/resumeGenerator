@@ -20,10 +20,10 @@ const getResume = async (req, res) => {
 
 
   const deleteUserResume = async (req, res) => {
-    let id = req.params.UserId;
-    const result = await Resume.findAll({ where: { UsersID: id } });
+    let id = req.params.resumeId;
+    const result = await Resume.findAll({ where: { id: id } });
     if (result != null) {
-      await Resume.destroy({ where: { UsersID: id } });
+      await Resume.destroy({ where: { id: id } });
       return res.json(result);
     }
     return res.send("Resume not found");
