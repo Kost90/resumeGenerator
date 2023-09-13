@@ -8,15 +8,16 @@ import styles from './LoginPage.module.css'
 function Loginpage() {
 const {loginusers, fetchLoginUser} = useLoginContext();
 
+const email = localStorage.getItem('email');
+
 useEffect(() =>{
-  if(loginusers === null){
+  if(email !== null){
     const Fetchdata = async () => {
-      const email = localStorage.getItem('email');
       await fetchLoginUser(email);
     }
     Fetchdata();
   }
-},[]);
+},[email]);
 
   return (
     <div className={styles.login_page}>
