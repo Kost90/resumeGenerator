@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const {testConnection} = require('./models/Conn');
-// const {createTables} = require('./models/setUp');
+const {createTables} = require('./models/setUp');
 const userRoutes = require('./routes/UserRoutes');
 const loginRoutes = require('./routes/LoginRoutes');
 const resumeroutes = require('./routes/ResumeRoutes');
@@ -15,7 +15,7 @@ testConnection();
 app.use(cors());
 app.use(express.json());
 
-// createTables();
+createTables();
 
 
 app.use("/users", userRoutes);
