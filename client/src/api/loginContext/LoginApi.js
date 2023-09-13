@@ -1,8 +1,8 @@
-const url = 'http://localhost:8000/loginuser';
+const url = process.env.REACT_APP_backendurl;
 
 export const postLoginUser = async (loginUser) => {
   try {
-    const response = await fetch(url, {
+    const response = await fetch(`${url}/loginuser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +28,7 @@ export const getLoginUser = async (email) => {
 
 export const getUserInfo = async (loginInfo) => {
     try {
-        const response = await fetch(`http://localhost:8000/users/${loginInfo.password}/${loginInfo.email}`)
+        const response = await fetch(`${url}/users/${loginInfo.password}/${loginInfo.email}`)
   
         if (!response.ok) {
           console.log("error");
@@ -45,7 +45,7 @@ export const getUserInfo = async (loginInfo) => {
 
 export const deleteLoginUser = async (UserId) => {
   try {
-    const response = await fetch(`${url}/${UserId}`, {
+    const response = await fetch(`${url}/loginuser/${UserId}`, {
       method: "DELETE",
     });
     if (!response.ok) {

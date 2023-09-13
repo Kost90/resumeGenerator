@@ -1,8 +1,9 @@
-const url = 'http://localhost:8000/users';
+
+const url = process.env.REACT_APP_backendurl;
 
 export const postUser = async (newUser) => {
     try {
-        const response = await fetch(url,{
+        const response = await fetch(`${url}/users`,{
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -20,7 +21,7 @@ export const postUser = async (newUser) => {
 }
 
 export const getUser = async (email) => {
-  const response = await fetch(`${url}/${email}`)
+  const response = await fetch(`${url}/users/${email}`)
 
   return await response.json()
 };

@@ -1,6 +1,6 @@
 
 const key = process.env.REACT_APP_OPEN_AI_KEY;
-const url = "http://localhost:8000/resume";
+const url = process.env.REACT_APP_backendurl;
 const openaiurl = "https://api.openai.com/v1/chat/completions";
 
 
@@ -49,7 +49,7 @@ export const postResumeAI = async (resume) => {
 
 export const postResume = async (resume) => {
   try {
-    const response = await fetch(url, {
+    const response = await fetch(`${url}/resume`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -68,14 +68,14 @@ export const postResume = async (resume) => {
 };
 
 export const getLoginUserResume = async (IdUser) => {
-  const response = await fetch(`${url}/${IdUser}`);
+  const response = await fetch(`${url}/resume/${IdUser}`);
 
   return await response.json();
 };
 
 export const delLogUserResume = async (UserId) => {
   try {
-    const response = await fetch(`${url}/${UserId}`, {
+    const response = await fetch(`${url}/resume/${UserId}`, {
       method: "DELETE",
     });
     if (!response.ok) {
