@@ -11,7 +11,6 @@ import Homepage from "./pages/Homepage";
 import Loginpage from "./pages/Loginpage";
 import Profilepage from "./pages/Profilepage";
 import Registerpage from "./pages/Registerpage";
-import Resumecreatepage from "./pages/Resumecreatepage";
 import Header from "./components/ui/header/Header";
 
 function App() {
@@ -24,17 +23,16 @@ function App() {
               <Header />
               <Routes>
                 <Route path="/" element={<Homepage />} />
-                <Route path="loginpage" element={<Loginpage />} />
+                <Route path="/loginpage" element={<Loginpage />} />
                 <Route
-                  path="profilepage"
+                  path="/profilepage"
                   element={
                     <LoginAuth>
                       <Profilepage />
                     </LoginAuth>
                   }
                 />
-                <Route path="registerpage" element={<Registerpage />} />
-                <Route path="resume" element={<Resumecreatepage />} />
+                <Route path="/registerpage" element={<Registerpage />} />
               </Routes>
             </UsersProvider>
           </LoginProvider>
