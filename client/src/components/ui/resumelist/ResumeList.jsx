@@ -16,7 +16,7 @@ function ResumeList() {
     if (users.length !== 0) {
       const Fetchdata = async () => {
         console.log("fetch resume");
-        await fetchUserResume(users[0].id);
+        await fetchUserResume(users.id);
       };
       Fetchdata();
     }

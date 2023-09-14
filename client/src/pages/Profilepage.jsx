@@ -11,8 +11,6 @@ function Profilepage() {
   const { loginusers, removeLoginUser } = useLoginContext();
   const { resume } = useResumeContext();
 
-  console.log(resume);
-
   const LogOut = (id) => {
     removeLoginUser(id);
   };

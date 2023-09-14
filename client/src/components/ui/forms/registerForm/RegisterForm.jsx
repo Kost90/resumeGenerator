@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import styles from "./RegisterForm.module.css";
 
-import { string, number, object, mixed, boolean, date } from "yup";
+import { string, object } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const registerSchema = {

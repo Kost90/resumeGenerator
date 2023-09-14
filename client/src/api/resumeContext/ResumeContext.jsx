@@ -60,7 +60,6 @@ export const ResumeProvider = ({ children }) => {
   }, []);
 
   const addResume = useCallback(async (resume) => {
-    console.log(resume);
     await postResume(resume);
     dispatchResume({
       type: resumeActionsTypes.ADD_RESUME,

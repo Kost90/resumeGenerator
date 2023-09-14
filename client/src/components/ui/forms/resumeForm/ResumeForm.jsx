@@ -178,7 +178,7 @@ function ResumeForm({ show }) {
     HandelchangeContent(content);
   };
 
-  const id = users[0]?.id;
+  const id = users?.id;
 
   return (
     <>

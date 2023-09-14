@@ -5,7 +5,6 @@ const openaiurl = "https://api.openai.com/v1/chat/completions";
 
 
 export const postResumeAI = async (resume) => {
-  console.log(key);
   try {
     const response = await fetch(openaiurl, {
       method: "POST",
