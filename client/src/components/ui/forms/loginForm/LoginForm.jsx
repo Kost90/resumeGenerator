@@ -2,13 +2,14 @@ import {memo, useCallback} from 'react';
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useLoginContext from '../../../../api/loginContext/LoginContext';
-import useUsersContext from "../../../../api/usersContext/UsersContext";
+import useResumeContext from '../../../../api/resumeContext/ResumeContext';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import styles from './LoginForm.module.css';
 
 import { string, object,} from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Loader from '../../loader/Loader';
 
 const loginSchema = {
   email: string()
@@ -18,8 +19,12 @@ const loginSchema = {
   password: string().trim().required().label("password"),
 }
 
-const Form = memo(({ afterSubmit}) => {
+const Form = memo(({ afterSubmit, setloading}) => {
   const navigate = useNavigate();
+
+  const toggleLoading = () => {
+    setloading();
+  };
  
   const {
     register,
@@ -31,8 +36,10 @@ const Form = memo(({ afterSubmit}) => {
   });
 
   const onSubmit = useCallback(async (data) => {
+    toggleLoading();
     await afterSubmit(data);
     localStorage.setItem('email',data.email);
+    toggleLoading();
     navigate('/profilepage');
     reset();
   },[]);
@@ -59,9 +66,18 @@ const Form = memo(({ afterSubmit}) => {
 
 function LoginForm() {
  const {addLoginUser} = useLoginContext();
- const { addUser } = useUsersContext();
+ const {ChangeLoading, loading} = useResumeContext();
 
- return <Form afterSubmit={addLoginUser}/>
+ const handelchangeLoading = () => {
+  ChangeLoading();
+};
+ 
+
+ return (
+  <div className={styles.container}>
+  {loading === false? (<Form afterSubmit={addLoginUser} setloading={handelchangeLoading}/>):(<Loader/>)}
+  </div>
+ )
 }
 
 export default LoginForm

@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import useUsersContext from "../../../../api/usersContext/UsersContext";
 import useLoginContext from "../../../../api/loginContext/LoginContext";
+import useResumeContext from "../../../../api/resumeContext/ResumeContext";
+import Loader from "../../loader/Loader";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import styles from "./RegisterForm.module.css";
@@ -20,8 +22,12 @@ const registerSchema = {
   password: string().trim().required().label("password"),
 };
 
-const Form = memo(({ afterSubmit, addLogin }) => {
+const Form = memo(({ afterSubmit, addLogin, setloader }) => {
   const navigate = useNavigate();
+
+  const toggleLoading = () => {
+    setloader();
+  };
 
   const {
     register,
@@ -33,7 +39,7 @@ const Form = memo(({ afterSubmit, addLogin }) => {
   });
 
   const onSubmit = useCallback(async (data) => {
-    console.log(data);
+    toggleLoading();
     await afterSubmit(data);
     const logindata = {
       email: data.email,
@@ -41,6 +47,7 @@ const Form = memo(({ afterSubmit, addLogin }) => {
     };
     localStorage.setItem("email", data.email);
     await addLogin(logindata);
+    toggleLoading();
     navigate("/profilepage");
     reset();
   }, []);
@@ -96,8 +103,17 @@ const Form = memo(({ afterSubmit, addLogin }) => {
 function RegisterForm() {
   const { addUser } = useUsersContext();
   const { addLoginUser } = useLoginContext();
+  const {ChangeLoading, loading} = useResumeContext();
 
-  return <Form afterSubmit={addUser} addLogin={addLoginUser} />;
+ const handelchangeLoading = () => {
+  ChangeLoading();
+};
+
+  return (
+    <div className={styles.container}>
+      {loading === false ? (<Form afterSubmit={addUser} addLogin={addLoginUser} setloader={ChangeLoading}/>):(<Loader/>)}
+    </div>
+    )
 }
 
 export default RegisterForm;
