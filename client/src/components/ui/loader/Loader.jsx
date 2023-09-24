@@ -1,9 +1,8 @@
-import React from "react";
-import { motion } from "framer-motion";
-import styles from "./Loader.module.css";
+import React from 'react'
+import { motion } from 'framer-motion'
+import styles from './Loader.module.css'
 
 function Loader() {
-  
   return (
     <motion.div className={styles.containerStyle}>
       <div>
@@ -15,7 +14,7 @@ function Loader() {
       </div>
       <h2>Loading</h2>
     </motion.div>
-  );
+  )
 }
 
-export default Loader;
+export default Loader

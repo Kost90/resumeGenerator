@@ -1,7 +1,7 @@
-import Button from "@mui/material/Button";
-import DeleteIcon from "@mui/icons-material/Delete";
-import useResumeContext from "../../../api/resumeContext/ResumeContext";
-import styles from "./ResumeDisplay.module.css";
+import Button from '@mui/material/Button'
+import DeleteIcon from '@mui/icons-material/Delete'
+import useResumeContext from 'api/resumeContext/ResumeContext'
+import styles from './ResumeDisplay.module.css'
 
 function Resumedisplay() {
   const {
@@ -10,13 +10,13 @@ function Resumedisplay() {
     removeUserResume,
     Handelchange,
     HandelchangeContent,
-  } = useResumeContext();
+  } = useResumeContext()
 
-  const deleteResume = (id) => {
-    removeUserResume(id);
-    Handelchange();
-    HandelchangeContent("");
-  };
+  const deleteResume = id => {
+    removeUserResume(id)
+    Handelchange()
+    HandelchangeContent('')
+  }
 
   return (
     <div className={styles.displayresume_container}>
@@ -25,12 +25,11 @@ function Resumedisplay() {
       <Button
         variant="outlined"
         startIcon={<DeleteIcon />}
-        onClick={() => deleteResume(resumeID)}
-      >
+        onClick={() => deleteResume(resumeID)}>
         Delete
       </Button>
     </div>
-  );
+  )
 }
 
-export default Resumedisplay;
+export default Resumedisplay

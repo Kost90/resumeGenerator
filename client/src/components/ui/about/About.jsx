@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
-import styles from "./About.module.css";
-import { Link } from "react-router-dom";
-import Button from "@mui/material/Button";
+import { motion } from 'framer-motion'
+import styles from './About.module.css'
+import { Link } from 'react-router-dom'
+import Button from '@mui/material/Button'
 
 function About() {
   const textVariants = {
@@ -9,13 +9,13 @@ function About() {
       x: -100,
       opacity: 0,
     },
-    vsisible: (custom) => ({
+    vsisible: custom => ({
       x: 0,
       opacity: 1,
-      ease: "easeOut",
+      ease: 'easeOut',
       transition: { duration: custom * 0.3, delay: custom * 0.5 },
     }),
-  };
+  }
 
   return (
     <section className={styles.section_about}>
@@ -26,8 +26,7 @@ function About() {
           duration: 1.5,
           delay: 0.5,
         }}
-        className={styles.container}
-      >
+        className={styles.container}>
         <>
           <h1>Online Resume Builder. Create a Professional Resume for Free.</h1>
           <p>
@@ -41,7 +40,7 @@ function About() {
         </>
       </motion.div>
     </section>
-  );
+  )
 }
 
-export default About;
+export default About
