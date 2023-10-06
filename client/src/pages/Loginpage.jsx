@@ -1,13 +1,12 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import LoginForm from 'components/ui/forms/loginForm/LoginForm'
 import useLoginContext from 'api/loginContext/LoginContext'
 import styles from './LoginPage.module.css'
 
 function Loginpage() {
+  const [email, setEmail] = useState(localStorage.getItem('email'))
   const { loginusers, fetchLoginUser } = useLoginContext()
-
-  const email = localStorage.getItem('email')
 
   useEffect(() => {
     if (email !== null) {

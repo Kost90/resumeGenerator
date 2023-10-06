@@ -3,9 +3,12 @@ const key = process.env.REACT_APP_OPEN_AI_KEY;
 const url = process.env.REACT_APP_BACKENDURL;
 const openaiurl = "https://api.openai.com/v1/chat/completions";
 
-
 export const postResumeAI = async (resume) => {
   try {
+    if (!key) {
+      throw new Error("OpenAI API key is missing.");
+    }
+
     const response = await fetch(openaiurl, {
       method: "POST",
       headers: {
@@ -35,13 +38,13 @@ export const postResumeAI = async (resume) => {
     });
 
     if (!response.ok) {
-      throw new Error("Failed to POST data to OpenAI API");
+      throw new Error("Failed to fetch data from OpenAI API");
     }
 
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error(error);
+    console.error("Error in postResumeAI:", error);
     throw error;
   }
 };
