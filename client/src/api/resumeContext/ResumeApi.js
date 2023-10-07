@@ -70,9 +70,18 @@ export const postResume = async (resume) => {
 };
 
 export const getLoginUserResume = async (IdUser) => {
-  const response = await fetch(`${url}/resume/${IdUser}`);
-
-  return await response.json();
+  try{
+    const controller = new AbortController()
+    const signal = controller.signal
+    const response = await fetch(`${url}/resume/${IdUser}`, {signal});
+  
+    return{
+      data: await response.json(),
+      controller,
+    } 
+  } catch(e){
+    console.error(e)
+  }
 };
 
 export const delLogUserResume = async (UserId) => {

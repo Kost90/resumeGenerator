@@ -4,76 +4,77 @@ import {
   useReducer,
   useCallback,
   useState,
-} from "react";
+} from 'react'
 
-import { postResume, getLoginUserResume, delLogUserResume } from "./ResumeApi";
+import { postResume, getLoginUserResume, delLogUserResume } from './ResumeApi'
 
-import { resumeReducer } from "./ResumeReducer";
-import { resumeActionsTypes } from "./ResumeActionsTypes";
+import { resumeReducer } from './ResumeReducer'
+import { resumeActionsTypes } from './ResumeActionsTypes'
 
-const ResumeContext = createContext();
+const ResumeContext = createContext()
 
-const initialResume = [];
+const initialResume = []
 
 const useResumeContext = () => {
-  const context = useContext(ResumeContext);
+  const context = useContext(ResumeContext)
 
-  if (typeof context === "undefined") {
-    throw new Error("useUsersContext must be used into UsersProvider!");
+  if (typeof context === 'undefined') {
+    throw new Error('useUsersContext must be used into UsersProvider!')
   }
 
-  return context;
-};
+  return context
+}
 
 export const ResumeProvider = ({ children }) => {
-  const [content, setContent] = useState("");
-  const [resumeID, setResumeId] = useState("");
-  const [showCompletion, setShowcompletion] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [content, setContent] = useState('')
+  const [resumeID, setResumeId] = useState('')
+  const [showCompletion, setShowcompletion] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const Handelchange = () => {
-    setShowcompletion((state) => !state);
-  };
+    setShowcompletion(state => !state)
+  }
 
-  const HandelchangeContent = (content) => {
-    setContent((state) => (state = content));
-  };
+  const HandelchangeContent = content => {
+    setContent(state => (state = content))
+  }
 
-  const ChangeResumeId = (id) => {
-    setResumeId((state) => (state = id));
-  };
+  const ChangeResumeId = id => {
+    setResumeId(state => (state = id))
+  }
 
   const ChangeLoading = () => {
-    setLoading((state) => !state);
-  };
+    setLoading(state => !state)
+  }
 
   const [{ resume }, dispatchResume] = useReducer(resumeReducer, {
     resume: initialResume,
-  });
+  })
 
-  const fetchUserResume = useCallback(async (IdUser) => {
-    const data = await getLoginUserResume(IdUser);
+  const fetchUserResume = useCallback(async IdUser => {
+    const {data, controller} = await getLoginUserResume(IdUser)
     dispatchResume({
       type: resumeActionsTypes.FETCH_RESUME,
       payload: { data },
-    });
-  }, []);
+    })
+    return controller
+  }, [])
 
-  const addResume = useCallback(async (resume) => {
-    await postResume(resume);
+  const addResume = useCallback(async resume => {
+    await postResume(resume)
     dispatchResume({
       type: resumeActionsTypes.ADD_RESUME,
       payload: { resume },
-    });
-  }, []);
+    })
+  }, [])
 
-  const removeUserResume = useCallback((userId) => {
-    delLogUserResume(userId);
+  const removeUserResume = useCallback(userId => {
+    delLogUserResume(userId)
     dispatchResume({
       type: resumeActionsTypes.REMOVE_RESUME,
       payload: { userId },
-    });
-  }, []);
+    })
+  }, [])
 
   return (
     <ResumeContext.Provider
@@ -90,11 +91,10 @@ export const ResumeProvider = ({ children }) => {
         resumeID,
         loading,
         ChangeLoading,
-      }}
-    >
+      }}>
       {children}
     </ResumeContext.Provider>
-  );
-};
+  )
+}
 
-export default useResumeContext;
+export default useResumeContext

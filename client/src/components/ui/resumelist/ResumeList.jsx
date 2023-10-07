@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect} from 'react'
 import useResumeContext from 'api/resumeContext/ResumeContext'
 import useUsersContext from 'api/usersContext/UsersContext'
 import ResumeItem from '../resumeItem/ResumeItem'
@@ -8,16 +8,19 @@ function ResumeList() {
   const { resume, fetchUserResume } = useResumeContext()
   const { users } = useUsersContext()
 
-  console.log(users)
-  console.log(resume)
-
   useEffect(() => {
-    if (users.length !== 0) {
+    let controller
+    if (users?.id) {
+      console.log(users)
       const Fetchdata = async () => {
-        console.log('fetch resume')
-        await fetchUserResume(users.id)
+        controller  = await fetchUserResume(users?.id)
       }
       Fetchdata()
+    }
+    return () => {
+      if(controller){
+        controller.abort()
+      }
     }
   }, [users])
 

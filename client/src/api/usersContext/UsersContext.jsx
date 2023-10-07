@@ -6,7 +6,7 @@ import { postUser, getUser } from "./UsersApi";
 
 const UsersContext = createContext();
 
-const initialUsers = [];
+const initialUsers = null;
 
 const useUsersContext = () => {
   const context = useContext(UsersContext);
@@ -24,16 +24,17 @@ export const UsersProvider = ({ children }) => {
   });
 
   const addUser = useCallback(async (data) => {
-    await postUser(data);
-    dispatchUsers({ type: userActionsTypes.ADD_USER, payload: { data } });
+    const user = await postUser(data);
+    dispatchUsers({ type: userActionsTypes.ADD_USER, payload: { user } });
   }, []);
 
   const fetchUser = useCallback(async (email) => {
-    const data = await getUser(email);
+    const {data, controller} = await getUser(email);
     dispatchUsers({
       type: userActionsTypes.ADD_USER,
       payload: { data },
     });
+    return controller
   }, []);
 
   return (

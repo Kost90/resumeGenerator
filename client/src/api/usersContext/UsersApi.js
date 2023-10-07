@@ -13,7 +13,6 @@ export const postUser = async (newUser) => {
 
           const data = await response.json();
           return data
-         
     }
     catch (error){
         return console.error(error)
@@ -21,7 +20,15 @@ export const postUser = async (newUser) => {
 }
 
 export const getUser = async (email) => {
-  const response = await fetch(`${url}/users/${email}`)
-
-  return await response.json()
+  try{
+    const controller = new AbortController()
+    const signal = controller.signal
+    const response = await fetch(`${url}/users/${email}`, {signal})
+    return{
+      data: await response.json(),
+      controller,
+    }
+  } catch(e){
+    console.error(e)
+  }
 };
