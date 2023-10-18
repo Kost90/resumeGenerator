@@ -1,6 +1,6 @@
 import { useEffect} from 'react'
-import useResumeContext from 'api/resumeContext/ResumeContext'
-import useUsersContext from 'api/usersContext/UsersContext'
+import useResumeContext from 'context/resumeContext/ResumeContext'
+import useUsersContext from 'context/usersContext/UsersContext'
 import ResumeItem from '../resumeItem/ResumeItem'
 import styles from './ResumeList.module.css'
 

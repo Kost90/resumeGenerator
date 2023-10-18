@@ -1,5 +1,5 @@
-import useLoginContext from 'api/loginContext/LoginContext'
-import useResumeContext from 'api/resumeContext/ResumeContext'
+import useLoginContext from 'context/loginContext/LoginContext'
+import useResumeContext from 'context/resumeContext/ResumeContext'
 import Button from '@mui/material/Button'
 import ResumeList from '../resumelist/ResumeList'
 import styles from './Sidebar.module.css'

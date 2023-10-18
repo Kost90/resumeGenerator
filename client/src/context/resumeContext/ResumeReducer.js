@@ -10,7 +10,7 @@ export const resumeReducer = (prevState, action) => {
       }
       case resumeActionsTypes.FETCH_RESUME:
       return {
-        resume: prevState.resume = payload.data,
+        resume: prevState.resume = payload.response,
       }
     case resumeActionsTypes.REMOVE_RESUME:
       return {

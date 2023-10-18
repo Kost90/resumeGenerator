@@ -1,4 +1,4 @@
-import About from '../components/ui/about/About'
+import About from '../../components/ui/about/About'
 
 function Homepage() {
   return (

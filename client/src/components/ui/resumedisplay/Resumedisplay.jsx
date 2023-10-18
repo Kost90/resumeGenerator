@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button'
 import DeleteIcon from '@mui/icons-material/Delete'
-import useResumeContext from 'api/resumeContext/ResumeContext'
+import useResumeContext from 'context/resumeContext/ResumeContext'
 import styles from './ResumeDisplay.module.css'
 
 function Resumedisplay() {

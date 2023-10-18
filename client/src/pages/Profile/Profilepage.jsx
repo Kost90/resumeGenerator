@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import useLoginContext from 'api/loginContext/LoginContext'
-import useUsersContext from 'api/usersContext/UsersContext'
+import useLoginContext from 'context/loginContext/LoginContext'
+import useUsersContext from 'context/usersContext/UsersContext'
 import Sidebar from 'components/ui/sidebar/Sidebar'
 import MainSection from 'components/ui/mainsection/MainSection'
 import styles from './ProfilePage.module.css'
