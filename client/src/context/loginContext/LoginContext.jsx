@@ -1,11 +1,6 @@
 import { createContext, useContext, useReducer, useCallback } from 'react'
-
-import {
-  postLoginUser,
-  getUserInfo,
-  deleteLoginUser,
-  getLoginUser,
-} from './LoginApi'
+import LoginApi from '../../api/LoginApi/LoginApi'
+import { getUserInfo } from '../../api/LoginApi/LoginApi'
 import { loginReducer } from './LoginReducer'
 import { loginActionsTypes } from './LoginActionTypes'
 
@@ -29,26 +24,26 @@ export const LoginProvider = ({ children }) => {
   })
 
   const fetchLoginUser = useCallback(async email => {
-    const { data, controller } = await getLoginUser(email)
+    const { response, controller } = await LoginApi.getLoginUser(email)
     dispatchLogin({
       type: loginActionsTypes.ADD_LOGIN_USER,
-      payload: { data },
+      payload: { response },
     })
     return controller
   }, [])
 
   const addLoginUser = useCallback(async loginUser => {
-    const { data, controller } = await getUserInfo(loginUser)
-    await postLoginUser(data)
+    const { response, controller } = await getUserInfo(loginUser)
+    await LoginApi.postLoginUser(response)
     dispatchLogin({
       type: loginActionsTypes.ADD_LOGIN_USER,
-      payload: { data },
+      payload: { response },
     })
     controller.abort()
   }, [])
 
   const removeLoginUser = useCallback(userId => {
-    deleteLoginUser(userId)
+    LoginApi.deleteLoginUser(userId)
     localStorage.clear()
     dispatchLogin({
       type: loginActionsTypes.REMOVE_LOGIN_USER,

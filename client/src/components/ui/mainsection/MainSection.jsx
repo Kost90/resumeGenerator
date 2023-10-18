@@ -1,6 +1,6 @@
 import ResumeForm from '../forms/resumeForm/ResumeForm'
 import Resumedisplay from '../resumedisplay/Resumedisplay'
-import useResumeContext from 'api/resumeContext/ResumeContext'
+import useResumeContext from 'context/resumeContext/ResumeContext'
 import styles from './Main.module.css'
 
 function MainSection() {

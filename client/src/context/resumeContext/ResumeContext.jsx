@@ -5,11 +5,10 @@ import {
   useCallback,
   useState,
 } from 'react'
-
-import { postResume, getLoginUserResume, delLogUserResume } from './ResumeApi'
-
+import ResumeApi from '../../api/ResumeApi/ResumeApi'
 import { resumeReducer } from './ResumeReducer'
 import { resumeActionsTypes } from './ResumeActionsTypes'
+
 
 const ResumeContext = createContext()
 
@@ -24,6 +23,7 @@ const useResumeContext = () => {
 
   return context
 }
+
 
 export const ResumeProvider = ({ children }) => {
   const [content, setContent] = useState('')
@@ -52,24 +52,26 @@ export const ResumeProvider = ({ children }) => {
   })
 
   const fetchUserResume = useCallback(async IdUser => {
-    const {data, controller} = await getLoginUserResume(IdUser)
+    const { response, controller } = await ResumeApi.getLoginUserResume(IdUser)
     dispatchResume({
       type: resumeActionsTypes.FETCH_RESUME,
-      payload: { data },
+      payload: { response },
     })
     return controller
   }, [])
 
+
   const addResume = useCallback(async resume => {
-    await postResume(resume)
+    await ResumeApi.postResume(resume)
     dispatchResume({
       type: resumeActionsTypes.ADD_RESUME,
       payload: { resume },
     })
   }, [])
 
+  
   const removeUserResume = useCallback(userId => {
-    delLogUserResume(userId)
+    ResumeApi.delLogUserResume(userId)
     dispatchResume({
       type: resumeActionsTypes.REMOVE_RESUME,
       payload: { userId },

@@ -1,16 +1,16 @@
 import { Routes, Route } from 'react-router-dom'
 
-import { UsersProvider } from './api/usersContext/UsersContext'
-import { LoginProvider } from './api/loginContext/LoginContext'
-import { ResumeProvider } from './api/resumeContext/ResumeContext'
+import { UsersProvider } from './context/usersContext/UsersContext'
+import { LoginProvider } from './context/loginContext/LoginContext'
+import { ResumeProvider } from './context/resumeContext/ResumeContext'
 import { StyledEngineProvider } from '@mui/material/styles'
 
 import LoginAuth from './components/hoc/LoginAuth'
 
-import Homepage from './pages/Homepage'
-import Loginpage from './pages/Loginpage'
-import Profilepage from './pages/Profilepage'
-import Registerpage from './pages/Registerpage'
+import Homepage from './pages/Home/Homepage'
+import Loginpage from './pages/Login/Loginpage'
+import Profilepage from './pages/Profile/Profilepage'
+import Registerpage from './pages/Register/Registerpage'
 import Header from './components/ui/header/Header'
 
 function App() {
