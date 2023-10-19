@@ -26,7 +26,7 @@ function Loginpage() {
   return (
     <div className={styles.login_page}>
       <h1>LOGIN FORM:</h1>
-      {loginusers !== null ? <Navigate to="/profilepage" /> : <LoginForm />}
+      {loginusers !== null ? <Navigate to="/profilepage/mainsection" /> : <LoginForm />}
     </div>
   )
 }

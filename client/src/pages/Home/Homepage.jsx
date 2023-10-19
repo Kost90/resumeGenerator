@@ -1,10 +1,11 @@
 import About from '../../components/ui/about/About'
+import { Container } from '@mui/material'
 
 function Homepage() {
   return (
-    <div>
+    <Container>
       <About />
-    </div>
+    </Container>
   )
 }
 

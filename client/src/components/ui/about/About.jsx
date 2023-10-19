@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Typography } from '@mui/material'
 import styles from './About.module.css'
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button'
@@ -18,7 +19,7 @@ function About() {
   }
 
   return (
-    <section className={styles.section_about}>
+    <section>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -28,7 +29,7 @@ function About() {
         }}
         className={styles.container}>
         <>
-          <h1>Online Resume Builder. Create a Professional Resume for Free.</h1>
+          <Typography variant='h1'>Online Resume Builder. Create a Professional Resume for Free.</Typography>
           <p>
             Free to use. Developed by hiring professionals. Resume writing can
             be stressful, confusing, and time-consuming if you do it all on your

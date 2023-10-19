@@ -41,7 +41,7 @@ const Form = memo(({ afterSubmit, setloading }) => {
     await afterSubmit(data)
     localStorage.setItem('email', data.email)
     toggleLoading()
-    navigate('/profilepage')
+    navigate('/profilepage/mainsection')
     reset()
   }, [])
 
