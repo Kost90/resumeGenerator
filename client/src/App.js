@@ -12,6 +12,7 @@ import Loginpage from './pages/Login/Loginpage'
 import Profilepage from './pages/Profile/Profilepage'
 import Registerpage from './pages/Register/Registerpage'
 import Header from './components/ui/header/Header'
+import MainSection from 'components/ui/mainsection/MainSection'
 
 function App() {
   return (
@@ -31,7 +32,9 @@ function App() {
                       <Profilepage />
                     </LoginAuth>
                   }
-                />
+                >
+                  <Route path='mainsection' element={<MainSection/>}/>
+                </Route>
                 <Route path="registerpage" element={<Registerpage />} />
               </Routes>
             </UsersProvider>

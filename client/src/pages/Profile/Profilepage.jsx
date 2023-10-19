@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
+import { Outlet } from 'react-router-dom'
 import useLoginContext from 'context/loginContext/LoginContext'
 import useUsersContext from 'context/usersContext/UsersContext'
 import Sidebar from 'components/ui/sidebar/Sidebar'
-import MainSection from 'components/ui/mainsection/MainSection'
 import styles from './ProfilePage.module.css'
 
 function Profilepage() {
@@ -34,7 +34,7 @@ function Profilepage() {
       {loginusers !== undefined ? (
         <>
           <Sidebar logout={LogOut} />
-          <MainSection />
+          <Outlet/>
         </>
       ) : null}
     </div>
