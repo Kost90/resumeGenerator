@@ -3,6 +3,7 @@ import { Typography } from '@mui/material'
 import styles from './About.module.css'
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button'
+import { Bolt } from '@mui/icons-material'
 
 function About() {
   const textVariants = {
@@ -29,7 +30,7 @@ function About() {
         }}
         className={styles.container}>
         <>
-          <Typography variant='h1'>Online Resume Builder. Create a Professional Resume for Free.</Typography>
+          <Typography variant='h1' sx={{fontWeight:'bold'}}>Online Resume Builder. Create a Professional Resume for Free.</Typography>
           <p>
             Free to use. Developed by hiring professionals. Resume writing can
             be stressful, confusing, and time-consuming if you do it all on your
