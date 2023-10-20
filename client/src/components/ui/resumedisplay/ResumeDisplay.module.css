@@ -3,7 +3,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: aliceblue;
   border-radius: 10px;
   padding: 20px 10px;
 }
@@ -21,10 +20,8 @@
     padding: 20px 0;
   }
   .text_container {
-    line-height: 50px;
-    margin: 0 100px;
     justify-content: right;
-    padding: 50px;
+    padding: 14px;
     max-width: 640px;
   }
 }/*# sourceMappingURL=ResumeDisplay.module.css.map */

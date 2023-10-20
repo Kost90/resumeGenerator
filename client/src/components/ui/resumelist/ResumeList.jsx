@@ -1,4 +1,5 @@
 import { useEffect} from 'react'
+import { List, Paper, Stack } from '@mui/material'
 import useResumeContext from 'context/resumeContext/ResumeContext'
 import useUsersContext from 'context/usersContext/UsersContext'
 import ResumeItem from '../resumeItem/ResumeItem'
@@ -25,11 +26,13 @@ function ResumeList() {
   }, [users])
 
   return (
-    <ul className={styles.li}>
+      <List sx={{display:'flex', flexDirection:'column', gap:1, alignItems:'center'}}>
       {resume.map(({ content, id }) => (
-        <ResumeItem content={content} id={id} key={id} />
+        <Paper elevation={2}>
+          <ResumeItem content={content} id={id} key={id} />
+        </Paper>
       ))}
-    </ul>
+      </List>
   )
 }
 
