@@ -6,6 +6,8 @@ import useResumeContext from 'context/resumeContext/ResumeContext'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import styles from './LoginForm.module.css'
+import { Paper } from '@mui/material'
+import { dsctBtnStyle, dsctinputStyle, mobinputStyle, mobBtnStyle } from './styles'
 
 import { string, object } from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -19,6 +21,8 @@ const loginSchema = {
     .label('Your email'),
   password: string().trim().required().label('password'),
 }
+
+const screenView = window.innerWidth;
 
 const Form = memo(({ afterSubmit, setloading }) => {
   const navigate = useNavigate()
@@ -46,10 +50,13 @@ const Form = memo(({ afterSubmit, setloading }) => {
   }, [])
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form_container}>
+    <Paper elevation={2}>
+      <h1 className={styles.titel_login_form}>LOGIN FORM:</h1>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form_container}>
       <TextField
         label="Enter your email"
         variant="outlined"
+        sx={screenView > 768? dsctinputStyle: mobinputStyle}
         type="email"
         {...register('email', { required: true })}
       />
@@ -60,6 +67,7 @@ const Form = memo(({ afterSubmit, setloading }) => {
       <TextField
         label="Enter your password"
         variant="outlined"
+        sx={screenView > 768? dsctinputStyle: mobinputStyle}
         type="password"
         {...register('password', { required: true })}
       />
@@ -67,10 +75,11 @@ const Form = memo(({ afterSubmit, setloading }) => {
         <div style={{ color: 'red' }}>{errors.password.message}</div>
       )}
 
-      <Button type="submit" variant="contained">
+      <Button type="submit" variant="contained" sx={screenView > 768? dsctBtnStyle: mobBtnStyle}>
         Log In
       </Button>
     </form>
+    </Paper>
   )
 })
 
