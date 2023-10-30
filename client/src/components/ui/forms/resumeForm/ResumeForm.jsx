@@ -150,7 +150,7 @@ const Form = memo(({ aftersubmit, id, show, setContent, setloading }) => {
         <div style={{ color: 'red' }}>{errors.skills.message}</div>
       )}
 
-      <Button type="submit" variant="contained">
+      <Button type="submit" variant="contained" sx={{backgroundColor: '#0062FF'}}>
         Generate resume
       </Button>
     </form>

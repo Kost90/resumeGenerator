@@ -36,7 +36,7 @@ function About() {
             be stressful, confusing, and time-consuming if you do it all on your
             own. With our Resume Maker, it’s quick, pain-free, and effective
           </p>
-          <Button type="button" variant="contained">
+          <Button type="button" variant="contained" sx={{backgroundColor: '#0062FF'}}>
             <Link to="/registerpage">Create your resume now</Link>
           </Button>
         </>

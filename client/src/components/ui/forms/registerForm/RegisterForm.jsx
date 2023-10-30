@@ -8,6 +8,8 @@ import Loader from 'components/ui/loader/Loader'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import styles from './RegisterForm.module.css'
+import { Paper } from '@mui/material'
+import { dsctBtnStyle, dsctinputStyle, mobinputStyle, mobBtnStyle } from './styles'
 
 import { string, object } from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -21,6 +23,8 @@ const registerSchema = {
     .matches(/@[^.]*\./),
   password: string().trim().required().label('password'),
 }
+
+const screenView = window.innerWidth;
 
 const Form = memo(({ afterSubmit, addLogin, setloader }) => {
   const navigate = useNavigate()
@@ -53,10 +57,13 @@ const Form = memo(({ afterSubmit, addLogin, setloader }) => {
   }, [])
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form_container}>
+    <Paper elevation={2}>
+      <h1 className={styles.titel_register_form}>REGISTER FORM:</h1>
+  <form onSubmit={handleSubmit(onSubmit)} className={styles.form_container}>
       <TextField
         label="Enter your Firstname"
         variant="outlined"
+        sx={screenView > 768? dsctinputStyle: mobinputStyle}
         type="text"
         {...register('Firstname', { required: true })}
       />
@@ -66,6 +73,7 @@ const Form = memo(({ afterSubmit, addLogin, setloader }) => {
       <TextField
         label="Enter your Lastname"
         variant="outlined"
+        sx={screenView > 768? dsctinputStyle: mobinputStyle}
         type="text"
         {...register('Lastname', { required: true })}
       />
@@ -76,6 +84,7 @@ const Form = memo(({ afterSubmit, addLogin, setloader }) => {
       <TextField
         label="Enter your email"
         variant="outlined"
+        sx={screenView > 768? dsctinputStyle: mobinputStyle}
         type="email"
         {...register('email', { required: true })}
       />
@@ -86,6 +95,7 @@ const Form = memo(({ afterSubmit, addLogin, setloader }) => {
       <TextField
         label="Enter your password"
         variant="outlined"
+        sx={screenView > 768? dsctinputStyle: mobinputStyle}
         type="password"
         {...register('password', { required: true })}
       />
@@ -93,10 +103,12 @@ const Form = memo(({ afterSubmit, addLogin, setloader }) => {
         <div style={{ color: 'red' }}>{errors.password.message}</div>
       )}
 
-      <Button type="submit" variant="contained">
+      <Button type="submit" variant="contained" sx={screenView > 768? dsctBtnStyle: mobBtnStyle}>
         Register
       </Button>
     </form>
+    </Paper>
+    
   )
 })
 
