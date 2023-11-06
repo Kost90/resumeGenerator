@@ -37,11 +37,11 @@ function About() {
           <span style={{ color: '#1090CB' }}>Online Resume Builder.</span>{' '}
           Create a Professional Resume for Free.
         </Typography>
-        <p>
+        <Typography variantMapping={{body1:'p'}}>
           Free to use. Developed by hiring professionals. Resume writing can be
           stressful, confusing, and time-consuming if you do it all on your own.
           With our Resume Maker, it’s quick, pain-free, and effective
-        </p>
+        </Typography>
         <Button
           type="button"
           variant="contained"
@@ -57,7 +57,7 @@ function About() {
           delay: 0.5,
         }}
         className={styles.container_svg}>
-        <img src={BillSiting} alt="Bill Sitting Using Laptop" />
+        <img src={BillSiting} alt="Bill Sitting Using Laptop" className={styles.billsitting}/>
         <div className={styles.yellow_elips}></div>
         <img src={Succlent} alt="Succlent" className={styles.succlent} />
         <img src={Cuboid} alt="Cuboid" className={styles.cuboid} />

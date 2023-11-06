@@ -1,5 +1,6 @@
 .flex_container_content {
   position: relative;
+  height: 100vh;
 }
 
 .section_about {
@@ -81,45 +82,46 @@
   }
   .container_svg {
     display: block;
+    position: relative;
   }
   .container_svg img {
     display: block;
     position: relative;
     z-index: 1;
   }
+  .container_svg .billsitting {
+    width: 400px;
+  }
   .container_svg .succlent {
     display: block;
     position: absolute;
-    top: 35%;
-    right: 40%;
+    top: 30%;
+    right: 70%;
+    width: 44px;
   }
   .container_svg .cuboid {
     display: block;
     position: absolute;
-    top: 33%;
-    right: 23%;
+    top: 27%;
+    right: 14%;
+    width: 64px;
   }
   .container_svg .bigplant {
     display: block;
     position: absolute;
     top: 57%;
-    right: 18%;
+    right: 5%;
+    width: 125px;
   }
   .purple_elips {
-    position: absolute;
-    z-index: 0;
-    width: 496px;
-    height: 504px;
-    flex-shrink: 0;
-    border-radius: 504px;
-    background: radial-gradient(50% 50% at 50% 50%, #edeaff 0%, rgba(196, 196, 196, 0) 100%);
+    width: 400px;
     left: 150px;
   }
   .yellow_elips {
     display: block;
     position: absolute;
     z-index: 0;
-    width: 496px;
+    width: 400px;
     height: 504px;
     flex-shrink: 0;
     border-radius: 504px;
@@ -130,20 +132,20 @@
     max-width: 740px;
   }
   .container h1 {
-    font-size: 46px;
-    line-height: 48px;
+    font-size: 26px;
+    line-height: 25px;
     max-width: 740px;
     letter-spacing: 1.8px;
     margin-bottom: 8px;
   }
   .container p {
-    font-size: 22px;
-    line-height: 28px;
+    font-size: 16px;
+    line-height: 20px;
     margin-bottom: 24px;
     max-width: 600px;
   }
 }
-@media (min-width: 1024px) and (min-width: 768px) {
+@media (min-width: 1024px) {
   .flex_container_content {
     display: flex;
     align-items: center;
@@ -154,29 +156,26 @@
     position: relative;
     z-index: 1;
   }
+  .container_svg .billsitting {
+    width: 509px;
+  }
   .container_svg .succlent {
-    position: absolute;
-    top: 35%;
-    right: 40%;
+    top: 29%;
+    right: 70%;
+    width: 66px;
   }
   .container_svg .cuboid {
-    position: absolute;
-    top: 33%;
-    right: 23%;
+    top: 28%;
+    right: 11%;
+    width: 94px;
   }
   .container_svg .bigplant {
-    position: absolute;
-    top: 57%;
-    right: 18%;
+    top: 55%;
+    right: 0%;
+    width: 185px;
   }
   .purple_elips {
-    position: absolute;
-    z-index: 0;
     width: 496px;
-    height: 504px;
-    flex-shrink: 0;
-    border-radius: 504px;
-    background: radial-gradient(50% 50% at 50% 50%, #edeaff 0%, rgba(196, 196, 196, 0) 100%);
     left: 150px;
     top: unset;
     transform: unset;
@@ -206,5 +205,29 @@
     line-height: 28px;
     margin-bottom: 24px;
     max-width: 600px;
+  }
+}
+@media (min-width: 1366px) {
+  .container_svg img {
+    position: relative;
+    z-index: 1;
+  }
+  .container_svg .billsitting {
+    width: 509px;
+  }
+  .container_svg .succlent {
+    top: 29%;
+    right: 70%;
+    width: 66px;
+  }
+  .container_svg .cuboid {
+    top: 28%;
+    right: 11%;
+    width: 94px;
+  }
+  .container_svg .bigplant {
+    top: 55%;
+    right: 0%;
+    width: 185px;
   }
 }/*# sourceMappingURL=About.module.css.map */

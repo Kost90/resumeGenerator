@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { AppBar, Toolbar } from '@mui/material'
 import useLoginContext from 'context/loginContext/LoginContext'
 import logo from 'components/images/icons8-r-67.png'
@@ -8,18 +8,34 @@ function Header() {
   const { loginusers } = useLoginContext()
 
   return (
-    <AppBar position='static' color='inherit' sx={{padding:2}}>
+    <AppBar position="static" color="inherit" sx={{ padding: 2 }}>
       <Toolbar style={{ justifyContent: 'space-between' }}>
-      <img src={logo} alt="logo" />
-      <div className={styles.nav_container}>
-        <Link to="/">Home</Link>
-        <Link to="/registerpage">Register</Link>
-        {loginusers === null ? (
-          <Link to="/loginpage">Log In</Link>
-        ) : (
-          <Link to="/profilepage/mainsection">Profile</Link>
-        )}
-      </div>
+        <img src={logo} alt="logo" />
+        <div className={styles.nav_container}>
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? styles.active : '')}>
+            Home
+          </NavLink>
+          <NavLink
+            to="/registerpage"
+            className={({ isActive }) => (isActive ? styles.active : '')}>
+            Register
+          </NavLink>
+          {loginusers === null ? (
+            <NavLink
+              to="/loginpage"
+              className={({ isActive }) => (isActive ? styles.active : '')}>
+              Log In
+            </NavLink>
+          ) : (
+            <NavLink
+              to="/profilepage/mainsection"
+              className={({ isActive }) => (isActive ? styles.active : '')}>
+              Profile
+            </NavLink>
+          )}
+        </div>
       </Toolbar>
     </AppBar>
   )

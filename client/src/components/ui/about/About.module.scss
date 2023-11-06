@@ -1,5 +1,6 @@
 .flex_container_content {
     position: relative;
+    height: 100vh;
 }
 
 .section_about {
@@ -82,44 +83,114 @@
 
     .container_svg {
         display: block;
+        position: relative;
         img {
             display: block;
             position: relative;
             z-index: 1;
         }
+        .billsitting {
+            width: 400px;
+        }
         .succlent {
             display: block;
             position: absolute;
-            top: 35%;
-            right: 40%;
+            top: 30%;
+    right: 70%;
+            width: 44px;
         }
         .cuboid {
             display: block;
             position: absolute;
-            top: 33%;
-            right: 23%;
+            top: 27%;
+    right: 14%;
+            width: 64px;
         }
         .bigplant {
             display: block;
             position: absolute;
             top: 57%;
-            right: 18%;
+            right: 5%;
+            width: 125px;
         }
     }
 
     .purple_elips {
-        position: absolute;
-        z-index: 0;
-        width: 496px;
-        height: 504px;
-        flex-shrink: 0;
-        border-radius: 504px;
-        background: radial-gradient(50% 50% at 50% 50%, #edeaff 0%, rgba(196, 196, 196, 0) 100%);
+        width: 400px;
         left: 150px;
     }
 
     .yellow_elips {
         display: block;
+        position: absolute;
+        z-index: 0;
+        width: 400px;
+        height: 504px;
+        flex-shrink: 0;
+        border-radius: 504px;
+        background: radial-gradient(50% 50% at 50% 50%, #fdffea 0%, rgba(196, 196, 196, 0) 100%);
+        top: 150px;
+    }
+
+    .container {
+        max-width: 740px;
+        h1 {
+            font-size: 26px;
+            line-height: 25px;
+            max-width: 740px;
+            letter-spacing: 1.8px;
+            margin-bottom: 8px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 20px;
+            margin-bottom: 24px;
+            max-width: 600px;
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .flex_container_content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 25px;
+    }
+
+    .container_svg {
+        img {
+            position: relative;
+            z-index: 1;
+        }
+        .billsitting {
+            width: 509px;
+        }
+        .succlent {
+            top: 29%;
+            right: 70%;
+            width: 66px;
+        }
+        .cuboid {
+            top: 28%;
+            right: 11%;
+            width: 94px;
+        }
+        .bigplant {
+            top: 55%;
+            right: 0%;
+            width: 185px;
+        }
+    }
+
+    .purple_elips {
+        width: 496px;
+        left: 150px;
+        top: unset;
+        transform: unset;
+    }
+
+    .yellow_elips {
         position: absolute;
         z-index: 0;
         width: 496px;
@@ -148,76 +219,29 @@
     }
 }
 
-@media (min-width: 1024px) {
-    @media (min-width: 768px) {
-        .flex_container_content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 25px;
+@media (min-width: 1366px) {
+    .container_svg {
+        img {
+            position: relative;
+            z-index: 1;
         }
-
-        .container_svg {
-            img {
-                position: relative;
-                z-index: 1;
-            }
-            .succlent {
-                position: absolute;
-                top: 35%;
-                right: 40%;
-            }
-            .cuboid {
-                position: absolute;
-                top: 33%;
-                right: 23%;
-            }
-            .bigplant {
-                position: absolute;
-                top: 57%;
-                right: 18%;
-            }
+        .billsitting {
+            width: 509px;
         }
-
-        .purple_elips {
-            position: absolute;
-            z-index: 0;
-            width: 496px;
-            height: 504px;
-            flex-shrink: 0;
-            border-radius: 504px;
-            background: radial-gradient(50% 50% at 50% 50%, #edeaff 0%, rgba(196, 196, 196, 0) 100%);
-            left: 150px;
-            top: unset;
-            transform: unset;
+        .succlent {
+            top: 29%;
+            right: 70%;
+            width: 66px;
         }
-
-        .yellow_elips {
-            position: absolute;
-            z-index: 0;
-            width: 496px;
-            height: 504px;
-            flex-shrink: 0;
-            border-radius: 504px;
-            background: radial-gradient(50% 50% at 50% 50%, #fdffea 0%, rgba(196, 196, 196, 0) 100%);
-            top: 150px;
+        .cuboid {
+            top: 28%;
+            right: 11%;
+            width: 94px;
         }
-
-        .container {
-            max-width: 740px;
-            h1 {
-                font-size: 46px;
-                line-height: 48px;
-                max-width: 740px;
-                letter-spacing: 1.8px;
-                margin-bottom: 8px;
-            }
-            p {
-                font-size: 22px;
-                line-height: 28px;
-                margin-bottom: 24px;
-                max-width: 600px;
-            }
+        .bigplant {
+            top: 55%;
+            right: 0%;
+            width: 185px;
         }
     }
 }
