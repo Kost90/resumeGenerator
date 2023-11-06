@@ -13,6 +13,19 @@
 .nav_container a:hover {
   color: rgb(144, 132, 132);
 }
+.nav_container .active {
+  color: #1090CB;
+}
+.nav_container .active::before {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  background-color: #08D3BB;
+  border-radius: 50%;
+  position: absolute;
+  margin: 0px 0px 0px -9px;
+}
 
 @media (min-width: 768px) {
   .nav_container {
