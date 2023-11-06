@@ -10,9 +10,6 @@
   text-transform: uppercase;
   color: #181896;
 }
-.nav_container a:hover {
-  color: rgb(144, 132, 132);
-}
 .nav_container .active {
   color: #1090CB;
 }
