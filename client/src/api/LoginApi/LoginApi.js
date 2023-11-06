@@ -19,7 +19,6 @@ class LoginApi extends API {
       if (!response.ok) {
         throw new Error('Cant POST')
       }
-      console.log(response)
       return response
     } catch (error) {
       return console.error(error)
@@ -31,7 +30,6 @@ class LoginApi extends API {
       const controller = new AbortController()
       const signal = controller.signal
       const response = await this.fetch({ path: `loginuser/${email}`, signal })
-      console.log(response)
       return {
         response,
         controller,
@@ -68,7 +66,6 @@ export const getUserInfo = async loginInfo => {
     )
 
     if (!response.ok) {
-      console.log('error')
       throw new Error('User not found or password not a match')
     }
     return {
