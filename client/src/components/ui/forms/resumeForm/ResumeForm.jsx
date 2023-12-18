@@ -63,7 +63,6 @@ const Form = memo(({ aftersubmit, id, show, setContent, setloading }) => {
         ...response,
         UsersID: id,
       }
-      console.log('did it')
       await aftersubmit(newData)
       addContent(newData.content)
       toggleLoading()

@@ -14,7 +14,6 @@ const verifyToken = (accesToken) => {
     const useremail = req.params.email;
     try {
       let x = verifyToken(token);
-      console.log(x);
       const result = await UserLogin.findOne({ where: { email: useremail } });
       if (result != null) {
         return res.json(result);
