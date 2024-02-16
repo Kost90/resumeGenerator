@@ -9,10 +9,13 @@ class ResumeApi extends API {
   }
 
   async postResume(resume) {
+    const controller = new AbortController()
+    const signal = controller.signal
     try {
       const response = await this.fetch({
         path: `resume`,
-        method: 'POST',
+        signal,
+        method:'POST',
         body: JSON.stringify(resume),
       })
       if (!response.ok) {

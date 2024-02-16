@@ -5,7 +5,7 @@ import styles from './Main.module.css'
 
 function MainSection() {
   const { showCompletion } = useResumeContext()
-
+  
   return (
     <div className={styles.main_section}>
       {showCompletion === false ? <ResumeForm /> : <Resumedisplay />}

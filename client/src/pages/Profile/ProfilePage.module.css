@@ -8,5 +8,6 @@
 @media (min-width: 768px) {
   .profile_page {
     flex-direction: row;
+    justify-content: flex-start;
   }
 }/*# sourceMappingURL=ProfilePage.module.css.map */
