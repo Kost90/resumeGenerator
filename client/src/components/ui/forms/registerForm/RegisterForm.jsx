@@ -52,7 +52,7 @@ const Form = memo(({ afterSubmit, addLogin, setloader }) => {
     localStorage.setItem('email', data.email)
     await addLogin(logindata)
     toggleLoading()
-    navigate('/profilepage')
+    navigate('/profilepage/mainsection')
     reset()
   }, [])
 
