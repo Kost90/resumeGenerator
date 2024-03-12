@@ -55,7 +55,7 @@ const Form = memo(({ aftersubmit, id, show, setContent, setloading }) => {
   const onSubmit = useCallback(
     async (data, e) => {
       toggleLoading()
-      const res = await postResumeAI(data)
+      const res = await postResumeAI(data);
       const response = {
         content: res.choices[0].message.content.trim(),
       }
@@ -174,7 +174,7 @@ function ResumeForm({ show }) {
     ChangeLoading()
   }
 
-  const setContent = content => {
+  const setContent = (content) => {
     HandelchangeContent(content)
   }
 
