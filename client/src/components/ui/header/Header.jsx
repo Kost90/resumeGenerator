@@ -12,22 +12,24 @@ function Header() {
       <Toolbar style={{ justifyContent: 'space-between' }}>
         <img src={logo} alt="logo" />
         <div className={styles.nav_container}>
-          <NavLink
-            to="/"
-            className={({ isActive }) => (isActive ? styles.active : '')}>
-            Home
-          </NavLink>
-          <NavLink
-            to="/registerpage"
-            className={({ isActive }) => (isActive ? styles.active : '')}>
-            Register
-          </NavLink>
           {loginusers === null ? (
-            <NavLink
-              to="/loginpage"
-              className={({ isActive }) => (isActive ? styles.active : '')}>
-              Log In
-            </NavLink>
+            <>
+              <NavLink
+                to="/"
+                className={({ isActive }) => (isActive ? styles.active : '')}>
+                Home
+              </NavLink>
+              <NavLink
+                to="/registerpage"
+                className={({ isActive }) => (isActive ? styles.active : '')}>
+                Register
+              </NavLink>
+              <NavLink
+                to="/loginpage"
+                className={({ isActive }) => (isActive ? styles.active : '')}>
+                Log In
+              </NavLink>
+            </>
           ) : (
             <NavLink
               to="/profilepage/mainsection"
